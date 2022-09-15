@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  color: MyString
+  scheduled_date: 2022-09-12
+  scheduled_time: 2022-09-12 20:46:18
+
+two:
+  title: MyString
+  description: MyText
+  color: MyString
+  scheduled_date: 2022-09-12
+  scheduled_time: 2022-09-12 20:46:18

@@ -1,0 +1,80 @@
+<div class="flex flex-row justify-between items-center">
+  <p class="font-sans font-semibold text-2xl text-[#384042]">
+    <%= mode == "add" ? "Add" : "Edit" %> reminder - <%= @date_string %>
+  </p>
+</div>
+
+<% reminder_show_url = "/reminder/#{@date.month}/#{@date.day}/#{@date.year}" %>
+<input id="reminder_id" type="hidden" value="<%= mode =='edit' ? reminder.id : '' %>" />
+<input id="mode" type="hidden" value="<%= mode %>" />
+<input id="show_url" type="hidden" value="<%= reminder_show_url %>" />
+
+<div class="mt-[22px]">
+  <label for="calendar_title" class="font-sans block mb-px text-lg font-normal text-[#384042]">Title</label>
+  <input type="text" id="calendar_title" class="peer bg-white border border-gray-300 text-gray-900 text-smrounded-lg rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Title" value="<%= mode == 'edit' ? reminder.title : '' %>" required>
+  <p class="error invisible text-red-700 font-light">
+    Please enter a title
+  </p>
+</div>
+
+<div class="mt-[30px]">
+  <label for="calendar_description" class="font-sans block mb-px text-lg font-normal text-[#384042]">Description</label>
+  <textarea type="text" row="3" id="calendar_description" class="peer bg-white border border-gray-300 text-gray-900 text-smrounded-lg rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required><%= mode == 'edit' ? reminder.description : '' %></textarea>
+  <p class="error invisible text-red-700 font-light">
+    Please enter a description
+  </p>
+</div>
+
+<div class="flex flex-row justify-between mt-[30px]">
+  <div class="grow">
+    <label for="reminder_date" class="font-sans block mb-px text-lg font-normal text-[#384042]">Date</label>
+    <div class="datepicker relative form-floating mb-3" data-mdb-toggle-button="false" data-mdb-format="mm/dd/yyyy">
+      <input type="text" id="reminder_date"
+        class="peer form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        placeholder="MM/DD/YYYY" data-mdb-toggle="datepicker" value="<%= mode == 'edit' ? reminder.scheduled_datetime.strftime("%m/%d/%Y") : '' %>" />
+      <label for="floatingInput" class="text-gray-700">MM/DD/YYYY</label>
+      <p class="error invisible text-red-700 font-light">
+        Please select a date
+      </p>
+    </div>
+  </div>
+
+  <div class="w-[40px]">
+  </div>
+  <div class="grow">
+    <label for="reminder_time" class="font-sans block mb-px text-lg font-normal text-[#384042]">Time</label>
+    <div class="timepicker relative form-floating mb-3 xl:w-96" data-mdb-with-icon="false" data-mdb-format="hh:mm" id="input-toggle-timepicker">
+      <input type="text" id="reminder_time"
+        class="peer form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        placeholder="HH:MM" data-mdb-toggle="input-toggle-timepicker" value="<%= mode == 'edit' ? reminder.scheduled_datetime.strftime("%I:%M %p") : '' %>" />
+      <label for="floatingInput" class="text-gray-700">HH:MM</label>
+      <p class="error invisible text-red-700 font-light">
+        Please select a time
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col mt-[30px] color-boxes">
+  <label class="font-sans block mb-px text-lg font-normal text-[#384042]">Color</label>
+  <div class="flex justify-between">
+    <% @REMINDER_COLORS.each { |color| %>
+      <button class="w-[55px] h-[48px] color-border bg-[<%= color %>] btn-color <%= mode == 'edit' && color.downcase == reminder.color.downcase ? 'color-selected-border' : '' %>"></button>
+    <% } %>
+  </div>
+  <p class="error invisible text-red-700 font-light">
+    Please select a color
+  </p>
+</div>
+
+<div class="flex flex-col mt-[50px] border-t border-[rgba(49, 39, 37, 0.2)]"></div>
+
+<div class="flex flex-row justify-<%= mode == 'add' ? "end" : 'between' %> mt-[40px]">
+  <% if mode == 'edit' %>
+    <button class="btn btn-remove bg-red">Remove</button>
+  <% end %>
+  <div>
+    <a class="btn btn-cancel bg-grey" href="<%= reminder_show_url %>">Cancel</a>
+    <button class="btn btn-save bg-blue ml-[14px]">Save</button>
+  </div>
+</div>

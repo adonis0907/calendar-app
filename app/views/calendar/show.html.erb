@@ -1,0 +1,43 @@
+<div class="flex flex-row justify-between items-center">
+  <p class="font-sans font-semibold text-2xl text-[#384042]">
+    <%= @date_string %>
+  </p>
+  <a class="btn bg-primary" href="<%= "/reminder/#{@date.month}/#{@date.day}/#{@date.year}/new" %>">
+    Add reminder
+  </a>
+</div>
+
+<div class="flex flex-col mt-[54px] max-h-[510px] -ml-10 px-10 pb-7 scrollbar overflow-x-visible overflow-y-scroll">
+  <% date_reminders.map do |reminder| %>
+    <div class="flex flex-row shadow-primary bg-white rounded-2xl px-3 relative mt-[30px]">
+      <div class="flex rounded-[100px] min-w-[12px] max-w-[12px] my-[12px]" style="background-color: <%= reminder.color %>">&nbsp;</div>
+      <div class="flex flex-col grow border-r-[1px] border-[#D1DCF0] w-75 px-[10px] py-[17px] justify-center">
+        <p class="font-sans font-semibold text-[14px] text-gray">
+          <%= reminder.title %>
+        </p>
+        <p class="font-sans font-semibold text-[18px] text-[#384042]">
+          <%= reminder.description %>
+        </p>
+      </div>
+      <div class="!max-w-[110px] !min-w-[110px] flex flex-col items-center justify-center my-[26px] ml-[10px]">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.9867 3.1875C9.36328 3.1875 3.1875 9.37656 3.1875 17C3.1875 24.6234 9.36328 30.8125 16.9867 30.8125C24.6234 30.8125 30.8125 24.6234 30.8125 17C30.8125 9.37656 24.6234 3.1875 16.9867 3.1875ZM17 28.05C10.8973 28.05 5.95 23.1027 5.95 17C5.95 10.8973 10.8973 5.95 17 5.95C23.1027 5.95 28.05 10.8973 28.05 17C28.05 23.1027 23.1027 28.05 17 28.05Z" fill="black" fill-opacity="0.5"/>
+          <path d="M17.6905 10.0938H15.6187V18.3812L22.8702 22.7309L23.9062 21.0309L17.6905 17.3453V10.0938Z" fill="black" fill-opacity="0.5"/>
+        </svg>
+        <p class="font-sans font-semibold text-[35px] text-[#797979] leading-[48px]"><%= "#{sprintf("%02d", reminder.scheduled_datetime.hour)}:#{sprintf("%02d", reminder.scheduled_datetime.min)}" %></p>
+      </div>
+      <a class="w-[36px] h-[36px] absolute -bottom-[18px] -right-[10px] bg-lightsky rounded-full flex items-center justify-center" href="/reminder/<%= reminder.id %>/edit">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_47_560)">
+            <path d="M2.25 15.75H5.0625L13.3575 7.455L10.545 4.6425L2.25 12.9375V15.75ZM3.75 13.56L10.545 6.765L11.235 7.455L4.44 14.25H3.75V13.56ZM13.7775 2.4675C13.7081 2.39797 13.6257 2.34281 13.535 2.30518C13.4442 2.26754 13.347 2.24817 13.2488 2.24817C13.1505 2.24817 13.0533 2.26754 12.9625 2.30518C12.8718 2.34281 12.7894 2.39797 12.72 2.4675L11.3475 3.84L14.16 6.6525L15.5325 5.28C15.602 5.21062 15.6572 5.1282 15.6948 5.03747C15.7325 4.94674 15.7518 4.84948 15.7518 4.75125C15.7518 4.65303 15.7325 4.55576 15.6948 4.46503C15.6572 4.3743 15.602 4.29189 15.5325 4.2225L13.7775 2.4675Z" fill="white"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_47_560">
+              <rect width="18" height="18" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+    </div>
+  <% end %>
+</div>

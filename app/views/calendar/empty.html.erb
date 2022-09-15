@@ -1,0 +1,13 @@
+<div class="flex flex-row justify-between items-center">
+  <p class="font-sans font-semibold text-2xl text-[#384042]">
+    <%= @date_string %>
+  </p>
+  <a class="btn bg-primary" href="<%= "/reminder/#{@date.month}/#{@date.day}/#{@date.year}/new" %>">
+    Add reminder
+  </a>
+</div>
+
+<div class="flex flex-col items-center mt-[128.8px]">
+  <%= image_tag("/assets/images/no_reminder.png", "class": "w-[423px] h-[282px]") %>
+  <p class="mt-[28.64px] font-sans font-semibold text-[#767a7b] text-[21px]">No reminders registered so far</p>
+</div>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calendar</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "https://kit.fontawesome.com/8c67ec2d4b.js", crossorigin: "anonymous" %>
+    <%= stylesheet_link_tag "http://fonts.cdnfonts.com/css/open-sans" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Lato" %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css?family=Inter" %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" %>
+
+    <%= javascript_include_tag "https://code.jquery.com/jquery-3.6.1.min.js", integrity: "sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=", crossorigin: "anonymous" %>
+  </head>
+
+  <body class="bg-[#EBF3FE]">
+    <main class="lg:container lg:mx-auto !w-[1120px] mt-[86px] mb-5">
+      <div class="flex flex-row">
+        <svg width="266" height="43" viewBox="0 0 266 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M72.7947 8.25307C75.3692 8.25307 77.8527 8.87323 79.8576 9.8989V15.8144C77.9895 14.5026 75.4376 13.5006 72.8402 13.5006C67.919 13.5006 64.547 17.1025 64.547 21.9208C64.547 26.6675 67.805 30.4123 73.0453 30.4123C75.6882 30.4123 78.1261 29.4582 80.245 27.9556V33.9187C78.0577 35.1353 75.3237 35.6838 72.7947 35.6838C64.6152 35.6838 58.9649 29.7684 58.9649 22.0162C58.9421 14.264 64.6152 8.25307 72.7947 8.25307Z" fill="#3BC6FB"/>
+          <path d="M88.174 21.9684C88.174 14.2162 93.8927 8.25307 101.457 8.25307C108.999 8.25307 114.74 14.2162 114.74 21.9684C114.74 29.7206 109.021 35.6838 101.457 35.6838C93.9155 35.6838 88.174 29.7206 88.174 21.9684ZM109.158 21.9684C109.158 17.2694 105.854 13.5484 101.457 13.5484C97.0597 13.5484 93.7559 17.2694 93.7559 21.9684C93.7559 26.6675 97.0597 30.3884 101.457 30.3884C105.854 30.3884 109.158 26.6675 109.158 21.9684Z" fill="#3BC6FB"/>
+          <path d="M122.623 8.6348H129.755C139.871 8.6348 145.315 13.3815 145.315 21.9208C145.315 30.0786 140.395 35.2784 129.505 35.2784H122.623V8.6348ZM129.755 30.1501C136.772 30.1501 139.734 27.1684 139.734 21.9208C139.734 19.1301 138.686 16.7686 136.772 15.3852C134.972 14.0732 132.558 13.7632 129.709 13.7632H128.204V30.1739H129.755V30.1501Z" fill="#3BC6FB"/>
+          <path d="M153.199 8.6348H168.897V13.7393H158.782V18.9631H167.485V23.829H158.782V30.1501H169.285V35.2545H153.199V8.6348Z" fill="#3BC6FB"/>
+          <path d="M176.894 8.6348H182.477V30.1501H193.619V35.2545H176.894V8.6348Z" fill="#3BC6FB"/>
+          <path d="M201.501 8.6348H207.084V35.2545H201.501V8.6348Z" fill="#3BC6FB"/>
+          <path d="M223.168 13.7632H214.944V8.6348H236.976V13.7393H228.751V35.2545H223.168V13.7632Z" fill="#3BC6FB"/>
+          <path d="M251.718 13.7632H243.492V8.6348H265.524V13.7393H257.299V35.2545H251.718V13.7632Z" fill="#3BC6FB"/>
+          <path d="M38.9377 12.2603L36.272 7.13199L28.3204 11.6402V9.94667C28.3204 7.20356 27.3862 4.86598 25.5407 2.91005C23.6952 0.977963 21.4397 0 18.7967 0C16.1994 0 13.9665 0.977963 12.121 2.91005C10.2527 4.84212 9.34135 7.20355 9.34135 9.97056V22.4216L0 27.717L2.66568 32.8454L9.31856 29.0527V32.6544C9.31856 35.3975 10.2299 37.7352 12.0754 39.6911C13.9209 41.6471 16.1538 42.6011 18.7967 42.6011C21.4169 42.6011 23.6496 41.6232 25.5179 39.6911C27.3863 37.7591 28.2976 35.3975 28.2976 32.6307V18.295L38.9377 12.2603ZM15.1969 9.8274C15.1969 8.82555 15.5386 7.9907 16.2222 7.29897C16.9056 6.60723 17.7031 6.24945 18.6601 6.24945C19.617 6.24945 20.4144 6.60723 21.0751 7.29897C21.7359 7.9907 22.0777 8.84934 22.0777 9.8274V15.1943L15.1969 19.0823V9.8274ZM22.0777 32.6068C22.0777 33.6086 21.7359 34.4435 21.0751 35.1353C20.4144 35.827 19.5942 36.1847 18.6601 36.1847C17.7031 36.1847 16.9056 35.827 16.2222 35.1353C15.5386 34.4435 15.1969 33.5847 15.1969 32.6068V25.7372L22.0777 21.8254V32.6068Z" fill="#3BC6FB"/>
+        </svg>
+      </div>
+
+      <div class="flex flex-row mt-[45.4px] rounded-[40px] bg-white shadow-primary">
+        <div class="w-[670px] px-10 py-12">
+          <%= yield %>
+        </div>
+
+        <div class="grow bg-secondary rounded-r-[40px] px-10 py-12">
+          <div class="flex flex-col">
+            <p class="font-extrabold text-white text-center text-[80px] leading-[109px]">
+              <%= @date.year %>
+            </p>
+            <p class="font-semibold -mt-8 text-white text-center text-[45px] leading-[61px]">
+              <%= Date::MONTHNAMES[@date.month] %>
+            </p>
+          </div>
+
+          <%
+            prev_month_day = @date.prev_month(1)
+            next_month_day = @date.next_month(1)
+          %>
+          <div class="flex flex-row mt-[66px] justify-center items-center text-white text-xl font-sans">
+            <a href="<%= "/reminder/#{prev_month_day.month}/#{prev_month_day.day}/#{prev_month_day.year}" %>">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <a class="bg-[#D9D9D9] w-[6px] h-[6px] ml-[15px] mr-[15px] rounded-full"
+              href="<%= "/reminder/#{@today.month}/#{@today.day}/#{@today.year}" %>"></a>
+            <a href="<%= "/reminder/#{next_month_day.month}/#{next_month_day.day}/#{next_month_day.year}" %>">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+          <div class="container mt-8">
+            <div class="flex flex-row text-white">
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                SUN
+              </div>
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                MON
+              </div>
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                TUE
+              </div>
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                WED
+              </div>
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                THU
+              </div>
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                FRI
+              </div>
+              <div class="font-lato font-black text-xs basis-1/7 text-center">
+                SAT
+              </div>
+            </div>
+
+            <%
+              month_index = 0
+              wday_index = @first_day_wday
+              days = Time.days_in_month(@date.month, @date.year)
+            %>
+
+            <div class="flex flex-row text-white mt-4">
+            <% for i in 0...@first_day_wday %>
+              <div class="font-lato font-medium text-lg basis-1/7 text-center">
+              </div>
+            <% end %>
+            <% days.times do |i| %>
+              <div class="flex font-lato font-medium text-lg basis-1/7 justify-center">
+                <a class="!w-[36px] !h-[36px] flex justify-center items-center <%= (i + 1) == @date.day ? "rounded-full bg-primary" : "" %>"
+                    href="<%= "/reminder/#{@date.month}/#{i+1}/#{@date.year}" %>">
+                  <% if @reminder_days.include?(i + 1) %>
+                    <span class="relative">
+                      <%= i + 1 %>
+                      <div class="absolute w-1.5 h-1.5 top-0 -right-2 bg-green rounded-full"></div>
+                    </span>
+                  <% else %>
+                    <%= i + 1 %>
+                  <% end %>
+                </span>
+                </a>
+              </div>
+              <% wday_index += 1 %>
+              <% if wday_index % 7 == 0 %>
+                </div>
+                <div class="flex flex-row text-white mt-4">
+              <% end %>
+            <% end %>
+          </div>
+          <div class="flex mt-[63px] font-inter justify-center text-xs font-normal text-white">
+            &copy; <%= @today.year %> Codelitt Inc All rights reserved
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js" %>
+    <%= javascript_include_tag "javascripts/application.js" %>
+  </body>
+</html>
